@@ -27,7 +27,7 @@ class s1{
             int B = Integer.parseInt(st.nextToken());
             //grabs the second token
 
-            System.out.println(A + " " + B);
+            System.out.println(C + " " + B);
         }
 
 
