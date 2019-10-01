@@ -12,14 +12,11 @@ class friday {
         BufferedReader br = new BufferedReader(new FileReader("friday.in"));
         PrintWriter pw = new PrintWriter(new FileWriter("friday.out"));
 
-        HashMap<String, Integer> days = new HashMap<>();
-        days.put(monday, 1);
-        days.put(tuesday, 2);
-        days.put(wednesday, 3);
-        days.put(thursday, 4);
-        days.put(friday, 5);
-        days.put(saturday, 6);
-        days.put(sunday, 7);
+        int[][] days = new int[7][2];
+
+        for (int f = 0; f < 7; f++) { //trying to use a double array to convert leftoverdays into days of the week
+            
+        }
 
         HashMap<Integer, Integer> months = new HashMap<>();
         int N = Integer.parseInt(br.readLine());
@@ -36,32 +33,32 @@ class friday {
         months.put(november, 30);
         months.put(december, 31);
 
-        var start = days.get(monday);
+        int start = 1;
         int daysinmonth = 0;
+        int leftover_days = 0;
         for (int i = 0; i < N; i++) {
             int year = 1900 + i;
-            for(String m : months.keyset){
-                if (m == february){
-                    if (year % 400 == 0){
+            for (String m : months.keyset) {
+                if (m == february) {
+                    if (year % 400 == 0) {
                         daysinmonth = 29;
+                        continue;
                     }
-                    if (year % 100 == 0 && year % 4 == 0){
-
-
-
-
-
-
-
-
-
-                        
+                    if (year % 100 != 0 && year % 4 == 0) {
+                        daysinmonth = 29;
+                        continue;
                     }
                 }
+                if (m != february){
+                    daysinmonth = months.get(m);
+                }
             }
-
+            if (start == 7){
+                friday13_count += 1;
+            }
+            leftover_days = ((daysinmonth + start) % 7) + 1;
         }
-
+        
         pw.close();
     }
 }
