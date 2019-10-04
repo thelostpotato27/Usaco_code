@@ -34,11 +34,12 @@ class friday {
         int start = 1;
         int daysinmonth = 0;
         for (int i = 0; i < N; i++) {
-            int year = 1900 + i;
+            int year = (1900 + i);
             for (String m : months.keySet()) {
 
-//find out why the code output is slightly off. I think it's because of the leap years, 
-//that's the only thing I can think of because of how small the error is.
+                // find out why the code output is slightly off. I think it's because of the
+                // leap years,
+                // that's the only thing I can think of because of how small the error is.
 
                 if (m == "february") {
                     if (year % 400 == 0) {
@@ -79,8 +80,8 @@ class friday {
             }
         }
 
-        for (int i = 0; i < 7; i++) {
-            pw.print(days[i] + " ");
+        for (int k = 0; k < 7; k++) {
+            pw.print(days[k] + " ");
         }
         pw.close();
     }
