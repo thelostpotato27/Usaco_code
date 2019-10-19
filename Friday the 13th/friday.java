@@ -16,71 +16,43 @@ class friday {
 
         int N = Integer.parseInt(br.readLine());
 
-        HashMap<String, Integer> months = new HashMap<>();
+        int[] months = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-        months.put("january", 31);
-        months.put("february", 28);
-        months.put("march", 31);
-        months.put("april", 30);
-        months.put("may", 31);
-        months.put("june", 30);
-        months.put("july", 31);
-        months.put("august", 31);
-        months.put("september", 30);
-        months.put("october", 31);
-        months.put("november", 30);
-        months.put("december", 31);
+        int day = 0;
+        for (int y = 1900; y < 1900 + N; y++) {
+            for (int m = 1; m<=12; m++) {
+                
+                days[day]++;
 
-        int start = 1;
-        int daysinmonth = 0;
-        for (int i = 0; i < N; i++) {
-            int year = (1900 + i);
-            for (String m : months.keySet()) {
-
+                int daysinmonth = 0;
                 // find out why the code output is slightly off. I think it's because of the
                 // leap years,
                 // that's the only thing I can think of because of how small the error is.
 
-                if (m == "february") {
-                    if (year % 400 == 0) {
+
+                if (m == 2) {
+                    if (y % 400 == 0) {
                         daysinmonth = 29;
-                    } else if (year % 100 != 0 && year % 4 == 0) {
+                    } else if ((y % 100 != 0) && (y % 4 == 0)) {
                         daysinmonth = 29;
                     } else {
                         daysinmonth = 28;
                     }
+                } else {
+                    daysinmonth = months[m];
                 }
+                
+                
 
-                if (m != "february") {
-                    daysinmonth = months.get(m);
-                }
 
-                if (start == 7) {
-                    days[0] += 1;
-                }
-                if (start == 6) {
-                    days[6] += 1;
-                }
-                if (start == 5) {
-                    days[5] += 1;
-                }
-                if (start == 4) {
-                    days[4] += 1;
-                }
-                if (start == 3) {
-                    days[3] += 1;
-                }
-                if (start == 2) {
-                    days[2] += 1;
-                }
-                if (start == 1) {
-                    days[1] += 1;
-                }
-                start = ((daysinmonth + (start - 1)) % 7) + 1;
+                day = ((daysinmonth + day) % 7) ;
             }
         }
+        
+        pw.print(days[5] + " ");
+        pw.print(days[6] + " ");
 
-        for (int k = 0; k < 7; k++) {
+        for (int k = 0; k < 5; k++) {
             pw.print(days[k] + " ");
         }
         pw.close();
